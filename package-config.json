@@ -1,0 +1,11 @@
+[
+	{
+		"Name": "apache2",
+		"Install": "apt-get",
+		"Service": "apache2"
+	},
+	{
+		"Name": "libapache2-mod-php5",
+		"Install": "apt-get"
+	}
+]
