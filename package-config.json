@@ -1,11 +1,34 @@
-[
-	{
-		"Name": "apache2",
-		"Install": "apt-get",
-		"Service": "apache2"
-	},
-	{
-		"Name": "libapache2-mod-php5",
-		"Install": "apt-get"
-	}
-]
+{
+	"package":	{ "apache2":	
+							{
+								"install":	"apt-get install",
+								"service":	"apache2"
+							},
+					"libapache2-mod-php5":
+							{
+								"install":	"apt-get install",
+								"service":	"php"
+							}
+				},
+				
+	"service":	{
+					"apache2":
+							{
+								"enable":	"true",
+								"update":	"true"
+							}
+				},
+				
+	"deploy":	{
+					"file":
+							{
+								"path":	"/var/www/home.php",
+								"owner":	"root",
+								"acl":	"775"
+							}
+				
+				},
+				
+	"hosts":	["18.234.238.121", "54.226.108.226"]
+	
+}
