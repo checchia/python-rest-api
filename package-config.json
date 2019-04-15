@@ -1,19 +1,46 @@
 {
 	"package":	{ "apache2":	
 							{
-								"install":	"apt-get install",
+								"install":	"/usr/bin/apt-get -y install ",
+								"update":	"/usr/bin/apt-get -y purge ",
+								"remove":	"/usr/bin/apt-get -y remove ",
+								"purge":	"/usr/bin/apt-get -y purge ",
 								"service":	"apache2"
 							},
-					"libapache2-mod-php5":
+				"nginx":
 							{
-								"install":	"apt-get install",
-								"service":	"php"
+								"install":	"/usr/bin/apt-get -y install ",
+								"update":	"/usr/bin/apt-get -y purge ",
+								"remove":	"/usr/bin/apt-get -y remove ",
+								"purge":	"/usr/bin/apt-get -y purge ",
+								"service":	"nginx"
+							},
+				"php5-fpm":
+							{
+								"install":	"/usr/bin/apt-get -y install ",
+								"update":	"/usr/bin/apt-get -y purge ",
+								"remove":	"/usr/bin/apt-get -y remove ",
+								"purge":	"/usr/bin/apt-get -y purge ",
+								"service":	"php5-fpm"
 							}
 				},
 				
 	"service":	{
 					"apache2":
 							{
+								"command":	"sudo service apache2 restart",
+								"enable":	"true",
+								"update":	"true"
+							},
+					"nginx":
+							{
+								"command":	"sudo service nginx restart",
+								"enable":	"true",
+								"update":	"true"
+							},
+					"php5-fpm":
+							{
+								"command":	"sudo service php5-fpm restart",
 								"enable":	"true",
 								"update":	"true"
 							}
@@ -22,13 +49,21 @@
 	"deploy":	{
 					"file":
 							{
-								"path":	"/var/www/home.php",
+								"path":	"/var/www/html/index.php",
+								"source":	"index.php",
 								"owner":	"root",
 								"acl":	"775"
 							}
 				
 				},
 				
-	"hosts":	["18.234.238.121", "54.226.108.226"]
+	"host-profile":	{
+					"18.234.238.121":	{
+		
+									}, 
+					"54.226.108.226": {
+						
+					}
+				}
 	
 }

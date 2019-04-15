@@ -1,17 +1,16 @@
 from flask_restful import Resource
-import json
+import os
 
 
 class PackageInstall(Resource):
 
-    with open("package-config.json", 'r') as f:
-        pkg_dict = json.load(f)
-
     def get(self, name):
-        for k, v in self.pkg_dict.items():
-            print(k, v)
-            # print(self.pkg_dict["package"])
-            #print(self.pkg_dict["service"])
-            #print(self.pkg_dict["deploy"])
-            #print(self.pkg_dict["hosts"])
-        return {"message": "Package installation..." + name}
+        return {"message": "Package installation."}
+    
+    def post(self, name):
+        from application import pkg_dict
+        pkg = pkg_dict["package"]
+        if name in pkg:
+            print("Installation command = ", pkg[name]["install"])
+            os.system(pkg[name]["install"] + " " + name)
+        return {"message": "Package installation for " + name}
